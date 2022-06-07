@@ -62,6 +62,7 @@
     if(e.target.className === 'delete__btn'){
       const el = e.target;
       el.parentElement.remove();
+      localStorage.setItem('items', JSON.stringify(items));
     }
   };
 
@@ -77,10 +78,6 @@
 
   addItems.addEventListener('submit', addItem);
   itemsList.addEventListener('click', toggleDone);
-  // window.onload = function(){
-  //   const btn = document.getElementById('#delete__btn');
-  //   btn.addEventListener('click', removeElement);
-  // }
   itemsList.addEventListener('click', removeElement);
 
   // call populateList on page load for saved items in LS
