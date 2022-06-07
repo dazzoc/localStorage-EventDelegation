@@ -52,15 +52,18 @@
         <li>
           <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
           <label for="item${i}">${plate.text}</label>
-          <button id="delete__btn">X</button>
+          <button class="delete__btn" data-index=${i}>X</button>
         </li>
       `;
     }).join('');
   };
 
-  // function removeElement(e){
-  //   this.parentElement.remove();
-  // };
+  function removeElement(e){
+    if(e.target.className === 'delete__btn'){
+      const el = e.target;
+      el.parentElement.remove();
+    }
+  };
 
   // persist the state of the checkbox toggle 
   function toggleDone(e) {
@@ -78,10 +81,7 @@
   //   const btn = document.getElementById('#delete__btn');
   //   btn.addEventListener('click', removeElement);
   // }
-
-  
-  
-
+  itemsList.addEventListener('click', removeElement);
 
   // call populateList on page load for saved items in LS
   populateList(items, itemsList);
